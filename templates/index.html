@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Результаты выборов Мэра Москвы</h1>
+        <br>
+          <p >
+            Сервис предназначен для поиска результатов выборов на сайте <a href={{url_msk}}>МОСКОВСКОЙ ГОРОДСКОЙ ИЗБИРАТЕЛЬНОЙ КОМИССИИ</a>. Для выполнения запроса
+            перейдите на страницу Поиска, укажите параметры запроса и нажмите кнопку "Поиск" <br>
+          </p>
+      </div>
+      <div class="col-lg-12 text-center">
+          <img src="{{url_for('static', filename = 'maria.jpg')}}" alt="Мэрия Москвы">
+      </div>
+    </div>
+{% endblock %}
+
+

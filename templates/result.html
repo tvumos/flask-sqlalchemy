@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block body %}
+   <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Результаты</h1>
+        <br>
+          <p >
+              <b>Параметры поиска. Регион: {{ region }}, УИК: {{ uik }}</b> <br>
+          </p>
+          <p >
+            <table id="table" class="table-list-blue" data-column-resize="" cellpadding="0" cellspacing="0" style=" width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 15%; text-align: center;">
+                            <b>№ строки</b><br>
+                        </td>
+                        <td style="width: 55%; text-align: center;">
+                            <b>Наименование</b><br>
+                        </td>
+                        <td style="width: 30%; text-align: center;">
+                            <b>Значение</b><br>
+                        </td>
+                    </tr>
+                {% for item in list_result %}
+                    <tr>
+                        <td style="width: 15%; text-align: center;">
+                            {{ item[0] }}<br>
+                        </td>
+                        <td style="width: 55%; text-align: left;">
+                            {{ item[1] }}<br>
+                        </td>
+                        <td style="width: 30%; text-align: right;">
+                            {{ item[2] }}<br>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+          </p>
+      </div>
+   </div>
+
+{% endblock %}

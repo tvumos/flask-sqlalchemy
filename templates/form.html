@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Поиск</h1>
+        <br>
+          <p >
+            Укажите параметры запроса и нажмите кнопку "Найти" <br>
+          </p>
+           <form method="post" name="form" action="/result/">
+                {{ form.csrf_token }} <br>
+               <table id="table" class="table-list-blue" data-column-resize="" cellpadding="0" cellspacing="0" style=" width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 25%; text-align: left;">
+                            {{ form.regions.label }}
+                        </td>
+                        <td style="width: 65%; text-align: left;">
+                            {{ form.regions }} <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; text-align: left;">
+                            {{ form.uiks.label }}
+                        </td>
+                        <td style="width: 65%; text-align: left;">
+                            {{ form.uiks }} <br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+               <br>
+                <input name="submitButton" id="submitID" type="submit" value="Найти" disabled="disabled">
+            </form>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+        function choice_region(){
+            $("#submit").attr('disabled', 'disabled');
+            var key = $("#regions").val();
+            if(key == 0)
+            {
+                $("#uiks").attr('disabled', 'disabled');
+                document.getElementById("submitID").disabled = true;
+            }
+            else
+            {
+                $("#uiks").removeAttr('disabled');
+                load_uiks();
+            }
+        }
+
+        function choice_uik(){
+            var key = $("#uiks").val();
+            if(key == 0)
+            {
+                document.getElementById("submitID").disabled = true;
+            }
+            else
+            {
+                document.getElementById("submitID").disabled = false;
+            }
+        }
+
+        function load_uiks(){
+            $.ajax({
+                type: "POST",
+                url: "/get_uik",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    obj = Object.keys(json)
+
+                    $("#uiks")
+                        .find('option')
+                        .remove()
+                        .end()
+                        .append('<option value="None">Не выбрано</option>')
+                        .val(0);
+
+                    var value, key;
+                    for(item in obj){
+                        value = json[obj[item]];
+                        key = obj[item];
+                    $("#uiks").append($("<option></option>")
+                            .attr("value",key)
+                            .text(value));
+                    }
+
+                },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        }
+
+        $(document).ready(function() {
+            choice_region();
+            $("#regions").change(function() {
+                choice_region();
+            });
+
+            $("#uiks").change(function() {
+                choice_uik();
+            });
+        });
+    </script>
+
+{% endblock %}
+
+

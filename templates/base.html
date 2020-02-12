@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Поиск по сайту МГИК">
+  <meta name="author" content="Трясцын В.Ю.">
+  <link rel="shortcut icon" type="image/png" href="{{url_for('static', filename = 'logo.png')}}"/>
+
+  <title>Поиск по сайту МГИК</title>
+  <!-- Bootstrap core CSS -->
+  <link href="{{url_for('static', filename = 'bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename = 'default.css')}}" rel="stylesheet">
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{url_for('static', filename = 'jquery.slim.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'jquery.min.js')}}"></script>
+
+</head>
+<body>
+    <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="http://www.moscow_city.izbirkom.ru/">МГИК</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+              aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          {% if page == 'main' %}
+              <li class="nav-item active">
+          {% else %}
+              <li class="nav-item">
+          {% endif %}
+            <a class="nav-link" href="/">Главная
+                {% if page == 'main' %}
+                  <span class="sr-only">(current)</span>
+                {% endif %}
+            </a>
+          </li>
+
+          {% if page == 'form' %}
+              <li class="nav-item active">
+          {% else %}
+              <li class="nav-item">
+          {% endif %}
+            <a class="nav-link" href="/form/">Поиск
+                {% if page == 'form' %}
+                  <span class="sr-only">(current)</span>
+                {% endif %}
+            </a>
+          </li>
+
+          </li>
+          {% if page == 'contacts' %}
+              <li class="nav-item active">
+          {% else %}
+              <li class="nav-item">
+          {% endif %}
+            <a class="nav-link" href="/contacts/">Контакты
+                {% if page == 'form' %}
+                  <span class="sr-only">(current)</span>
+                {% endif %}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Block body -->
+  <div class="container">
+    {% block body %}
+	{% endblock %}
+  </div>
+
+  <div class="container">
+	<footer>
+      <br>
+      <hr />
+		<p><a class="text-decoration-none" href={{uii_url}}>{{uii}}</a> &copy; 2020</p>
+	</footer>
+  </div>
+
+</body>
+</html>
