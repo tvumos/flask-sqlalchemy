@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Контакты</h1>
+        <br>
+          <p >
+            <table id="table" class="table-list-blue" data-column-resize="" cellpadding="0" cellspacing="0" style=" width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 25%; text-align: left;">
+                            Автор:<br>
+                        </td>
+                        <td style="width: 65%; text-align: left;">
+                            {{fio}}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; text-align: left;">
+                            Email:<br>
+                        </td>
+                        <td>
+                            {{email}}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; text-align: left;">
+                            Город:<br>
+                        </td>
+                        <td style="width: 65%; text-align: left;">
+                            {{city}}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; text-align: left;">
+                            Дата создания:<br>
+                        </td>
+                        <td style="width: 65%; text-align: left;">
+                            {{creation_date}}<br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+          </p>
+      </div>
+    </div>
+
+{% endblock %}
+
